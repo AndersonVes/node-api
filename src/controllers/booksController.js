@@ -17,7 +17,7 @@ class BookController {
             .populate('author', 'name')
             .exec((err, books) => {
                 if (err) {
-                    res.status(400).send({ message: `${err.message} - id do book não localizado.` })
+                    res.status(400).send({ message: `${err.message} - book id not found.` })
                 } else {
                     res.status(200).send(books)
                 }
@@ -41,9 +41,9 @@ class BookController {
 
         books.findByIdAndUpdate(id, { $set: req.body }, (err) => {
             if (!err) {
-                res.status(200).send({ message: "book atualizado com sucesso" })
+                res.status(200).send({ message: "book updated" })
             } else {
-                res.status(500).send({ message: `${err.message} - falha ao atualizar book.` })
+                res.status(500).send({ message: `${err.message} - failed to update book.` })
             }
         })
     }
@@ -53,9 +53,9 @@ class BookController {
 
         books.findByIdAndDelete(id, (err) => {
             if (!err) {
-                res.status(200).send({ message: "book removido com sucesso" })
+                res.status(200).send({ message: "book removed" })
             } else {
-                res.status(500).send({ message: `${err.message} - falha ao excluir book.` })
+                res.status(500).send({ message: `${err.message} - failed to delete book.` })
             }
         })
     }
